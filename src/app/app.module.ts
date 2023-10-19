@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,8 @@ import { NotFoundPageComponent } from './components/pages/not-found-page/not-fou
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
+import { BookCatalogComponent } from './components/books/book-catalog/book-catalog.component';
+import { BookCardComponent } from './components/books/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,15 @@ import { LoginFormComponent } from './components/login/login-form/login-form.com
     NotFoundPageComponent,
     HomePageComponent,
     LoginPageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    BookCatalogComponent,
+    BookCardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

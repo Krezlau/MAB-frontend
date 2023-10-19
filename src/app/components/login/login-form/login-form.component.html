@@ -1,15 +1,17 @@
-<form class="flex flex-col">
+<form class="flex flex-col" (ngSubmit)="onSubmit()" >
   <label class="text-center mt-10 mb-2" id="email">Email</label>
   <input
     class="input rounded-none mb-4 mx-auto w-2/3"
     type="email"
     id="email"
+    [formControl]="emailControl"
   />
   <label class="text-center mb-2" id="password">Password</label>
   <input
     class="input rounded-none mb-10 mx-auto w-2/3"
     type="password"
     id="password"
+    [formControl]="passwordControl"
   />
   <div class="mx-auto w-2/3">
     <button
