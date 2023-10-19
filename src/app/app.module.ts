@@ -13,6 +13,7 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { BookCatalogComponent } from './components/books/book-catalog/book-catalog.component';
 import { BookCardComponent } from './components/books/book-card/book-card.component';
+import { FeaturedBookCardComponent } from './components/books/featured-book-card/featured-book-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BookCardComponent } from './components/books/book-card/book-card.compon
     LoginPageComponent,
     LoginFormComponent,
     BookCatalogComponent,
-    BookCardComponent
+    BookCardComponent,
+    FeaturedBookCardComponent
   ],
   imports: [
     BrowserModule,

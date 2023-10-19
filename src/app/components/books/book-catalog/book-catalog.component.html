@@ -1,4 +1,7 @@
-<ul class="grid grid-cols-2 gap-4">
+<ul class="grid grid-cols-3 gap-4">
+  <li class="col-span-2 row-span-3">
+    <app-featured-book-card [book]="featured"></app-featured-book-card>
+  </li>
   <li *ngFor="let book of books">
     <app-book-card [book]="book"></app-book-card>
   </li>
