@@ -1,0 +1,73 @@
+<div class="flex flex-row gap-2">
+  <h1 class="text-lg my-auto font-bold">{{ rating }}</h1>
+  <svg
+    [ngClass]="{
+      'w-6 h-6 ': true,
+      'text-black': rating < 1,
+      'text-yellow-500': rating >= 1
+    }"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path
+      d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+    />
+  </svg>
+  <svg
+    [ngClass]="{
+      'w-6 h-6 ': true,
+      'text-black': rating < 2,
+      'text-yellow-400': rating >= 2
+    }"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path
+      d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+    />
+  </svg>
+  <svg
+    [ngClass]="{
+      'w-6 h-6 ': true,
+      'text-black': rating < 3,
+      'text-yellow-400': rating >= 3
+    }"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path
+      d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+    />
+  </svg>
+  <svg
+    [ngClass]="{
+      'w-6 h-6 ': true,
+      'text-black': rating < 4,
+      'text-yellow-400': rating >= 4
+    }"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path
+      d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+    />
+  </svg>
+  <svg
+    [ngClass]="{
+      'w-6 h-6 ': true,
+      'text-black': rating < 5,
+      'text-yellow-400': rating >= 5
+    }"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path
+      d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+    />
+  </svg>
+</div>

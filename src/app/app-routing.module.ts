@@ -6,18 +6,24 @@ import { AuthorCatalogPageComponent } from './components/pages/author-catalog-pa
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
 import { NotFoundPageComponent } from './components/pages/not-found-page/not-found-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { BookDetailsPageComponent } from './components/pages/book-details-page/book-details-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'book-catalog', component: BookCatalogPageComponent },
+  {
+    path: 'book-catalog',
+    component: BookCatalogPageComponent,
+    pathMatch: 'full',
+  },
   { path: 'author-catalog', component: AuthorCatalogPageComponent },
   { path: 'search', component: SearchPageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: 'book-catalog/:id', component: BookDetailsPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
