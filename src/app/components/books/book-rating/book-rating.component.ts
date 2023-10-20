@@ -6,8 +6,4 @@ import { Component, Input } from '@angular/core';
 })
 export class BookRatingComponent {
   @Input() rating: number = 0;
-
-  ngOnInit() {
-    console.log(this.rating);
-  }
 }

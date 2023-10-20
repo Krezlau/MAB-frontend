@@ -1,1 +1,14 @@
-<p>book-review works!</p>
+<li class="mt-6">
+  <div class="flex flex-row justify-between">
+    <div class="flex flex-row gap-2">
+    <div class="rounded-full flex flex-row p-1 justify-center h-8 w-8 bg-black">
+      <span className="text-xs text-center w-full">{{ review.username[0].toUpperCase() }}</span>
+    </div>
+    <h3 class="my-auto">{{ review.username }}</h3>
+    </div>
+    <app-book-rating [rating]="review.rating"></app-book-rating>
+  </div>
+  <div class="mt-2 border-b-2 pb-2 border-black">
+    <p class="text-sm">{{ review.content }}</p>
+  </div>
+</li>
