@@ -1,0 +1,48 @@
+<form class="flex flex-col" (ngSubmit)="onSubmit()" >
+  <label class="text-center mt-10 mb-2" id="username">Username</label>
+  <input
+    class="input rounded-none mb-4 mx-auto w-2/3"
+    type="text"
+    id="username"
+    [formControl]="usernameControl"
+  />
+  <label class="text-center mb-2" id="email">Email</label>
+  <input
+    class="input rounded-none mb-4 mx-auto w-2/3"
+    type="email"
+    id="email"
+    [formControl]="emailControl"
+  />
+  <label class="text-center mb-2" id="repeat-email">Repeat Email</label>
+  <input
+    class="input rounded-none mb-4 mx-auto w-2/3"
+    type="email"
+    id="repeat-email"
+    [formControl]="repeatEmailControl"
+  />
+  <label class="text-center mb-2" id="password">Password</label>
+  <input
+    class="input rounded-none mb-4 mx-auto w-2/3"
+    type="password"
+    id="password"
+    [formControl]="passwordControl"
+  />
+  <label class="text-center mb-2" id="repeat-password">Repeat Password</label>
+  <input
+    class="input rounded-none mb-10 mx-auto w-2/3"
+    type="password"
+    id="repeat-password"
+    [formControl]="repeatPasswordControl"
+  />
+  <div class="mx-auto w-2/3">
+    <button
+      class="btn rounded-none bg-black w-[calc(100%-3rem)] text-center mx-6"
+    >
+      Create Account
+    </button>
+    <p class="text-center mt-4">
+      Already have an account?
+      <a class="text-sky-300 hover:text-sky-500" [routerLink]="'/login'">Sing in</a>
+    </p>
+  </div>
+</form>
