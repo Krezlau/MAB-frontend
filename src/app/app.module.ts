@@ -26,6 +26,8 @@ import { SignUpPageComponent } from './components/pages/sign-up-page/sign-up-pag
 import { SignUpFormComponent } from './components/login/sign-up-form/sign-up-form.component';
 import { AuthorListComponent } from './components/authors/author-list/author-list.component';
 import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
+import { BookSearchFormComponent } from './components/books/book-search-form/book-search-form.component';
+import { BookSearchResultsComponent } from './components/books/book-search-results/book-search-results.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { AuthorCardComponent } from './components/authors/author-card/author-car
     SignUpFormComponent,
     AuthorListComponent,
     AuthorCardComponent,
+    BookSearchFormComponent,
+    BookSearchResultsComponent,
   ],
   imports: [
     BrowserModule,

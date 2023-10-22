@@ -21,11 +21,24 @@
     >
   </nav>
   <div class="navbar-end">
-    <a routerLink="/login" routerLinkActive="active" class="btn rounded-none bg-black mx-4">login</a>
+    <a class="btn rounded-none bg-black mx-4" [routerLink]="['login']">login</a>
   </div>
 </header>
-<div class="mx-auto max-w-6xl mt-24">
+<div class="mx-auto max-w-6xl mt-24 mb-12">
   <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
   <!-- The routed views render in the <router-outlet>-->
   <router-outlet></router-outlet>
+</div>
+<div
+  [ngClass]="{
+    'alert bg-red-500 text-white shadow-xl shadow-black fixed w-[30rem] rounded-none border-2 border-black left-[calc(50%-15rem)] z-30 transform duration-200 ease-in': true,
+    '-bottom-20': (alertVisible$ | async) === false,
+    'bottom-4': alertVisible$ | async,
+    'bg-green-500': (alertType$ | async) === 'success',
+    'bg-yellow-500': (alertType$ | async) === 'warning',
+    'bg-sky-500': (alertType$ | async) === 'info'
+  }"
+  (click)="alertHide()"
+>
+  <span>Error! Task failed successfully.</span>
 </div>
