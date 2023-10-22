@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-book-rating-form',
   templateUrl: './book-rating-form.component.html'
 })
 export class BookRatingFormComponent {
+  @Output() ratingChange = new EventEmitter<number>();
+
   oldRating = 1;
   rating = 1;
 
   onMouseEnter(value: number) {
-    this.oldRating = this.rating;
     this.rating = value;
   }
 
@@ -19,5 +20,6 @@ export class BookRatingFormComponent {
 
   onClick() {
     this.oldRating = this.rating;
+    this.ratingChange.emit(this.rating);
   }
 }

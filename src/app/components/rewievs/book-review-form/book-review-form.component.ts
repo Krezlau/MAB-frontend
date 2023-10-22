@@ -12,6 +12,12 @@ export class BookReviewFormComponent {
     this.router = router;
   }
   contentControl = new FormControl('', Validators.required);
+  rating = 1;
+
+  onRatingChange(rating: number) {
+    this.rating = rating;
+    console.log('Rating changed to', rating);
+  }
 
   onSubmit() {
     if (this.contentControl.invalid) {
@@ -19,8 +25,8 @@ export class BookReviewFormComponent {
     } else {
       console.log('Form is valid');
       console.log(this.contentControl.value);
-      // redirect to home page
-      // this.router.navigate(['/book-catalog']);
+      console.log(this.rating);
+      this.router.navigate(this.router.url.split('/').slice(0, -1));
     }
   }
 }

@@ -1,7 +1,7 @@
 <form class="flex flex-col" (ngSubmit)="onSubmit()">
   <label class="text-center mt-10 mb-2" id="rating">Your rating</label>
-  <div class="flex flex-row justify-center my-4">
-    <app-book-rating-form></app-book-rating-form>
+  <div class="flex flex-row justify-center mb-4">
+    <app-book-rating-form (ratingChange)="onRatingChange($event)"></app-book-rating-form>
   </div>
   <label class="text-center mb-2" id="content">Your review</label>
   <textarea
