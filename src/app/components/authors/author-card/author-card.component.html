@@ -1,0 +1,29 @@
+<div
+  class="flex flex-row gap-4 justify-between p-4 w-full h-full bg-sky-900 border-2 border-black shadow-gray-500 shadow-sm"
+>
+  <img
+    [src]="author.photo"
+    alt="author image"
+    class="object-cover border-2 border-black shadow-sm shadow-gray-500 h-64 w-48"
+  />
+  <div class="w-full">
+    <div class="prose max-w-none">
+      <h1 class="">{{ (author.name + " " + author.surname).toUpperCase() }}</h1>
+      <p>{{ author.about }}</p>
+      <h3>Books:</h3>
+    </div>
+    <ul class="flex flex-row gap-2 flex-wrap">
+      <li
+        *ngFor="let book of author.books"
+        class="border-black border-2 p-[0.125rem] hover:text-white"
+      >
+        <a
+          [routerLink]="['/book-catalog', book.id]"
+          class="text-lg font-semibold flex flex-row gap-2"
+          ><p class="border-r-2 border-black pr-2">{{ book.title.toUpperCase() }}</p>
+          <app-book-rating [rating]="3.5"></app-book-rating>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

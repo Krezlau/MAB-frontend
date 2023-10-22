@@ -24,6 +24,8 @@ import { AddBookReviewPageComponent } from './components/pages/add-book-review-p
 import { BookRatingFormComponent } from './components/books/book-rating-form/book-rating-form.component';
 import { SignUpPageComponent } from './components/pages/sign-up-page/sign-up-page.component';
 import { SignUpFormComponent } from './components/login/sign-up-form/sign-up-form.component';
+import { AuthorListComponent } from './components/authors/author-list/author-list.component';
+import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { SignUpFormComponent } from './components/login/sign-up-form/sign-up-for
     BookRatingFormComponent,
     SignUpPageComponent,
     SignUpFormComponent,
+    AuthorListComponent,
+    AuthorCardComponent,
   ],
   imports: [
     BrowserModule,
