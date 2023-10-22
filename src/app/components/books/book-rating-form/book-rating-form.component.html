@@ -1,0 +1,191 @@
+<div class="p-2" (mouseleave)="onMouseOut()" (click)="onClick()">
+  <div class="flex flex-row gap-2">
+    <h1 class="text-lg my-auto font-bold w-6">{{ rating }}</h1>
+    <div class="flex flex-row">
+      <div (mouseenter)="onMouseEnter(1)" >
+        <svg
+          [ngClass]="{
+            'w-3 h-6': true,
+            'text-black': rating < 1,
+            'text-yellow-400': rating >= 1
+          }"
+          viewBox="0 0 12 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+          />
+        </svg>
+      </div>
+      <div (mouseenter)="onMouseEnter(1)" >
+        <svg
+          [ngClass]="{
+            'w-3 h-6 ': true,
+            'text-black': rating < 1,
+            'text-yellow-400': rating >= 1
+          }"
+          viewBox="12 0 12 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <div
+        (mouseenter)="onMouseEnter(1.5)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 1.5,
+          'text-yellow-400': rating >= 1.5
+        }"
+        viewBox="0 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+      </div>
+        <div
+        (mouseenter)="onMouseEnter(2)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 2,
+          'text-yellow-400': rating >= 2
+        }"
+        viewBox="12 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+        </div>
+    </div>
+    <div class="flex flex-row">
+      <div
+        (mouseenter)="onMouseEnter(2.5)"
+        >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 2.5,
+          'text-yellow-400': rating >= 2.5
+        }"
+        viewBox="0 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+      </div>
+      <div
+        (mouseenter)="onMouseEnter(3)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 3,
+          'text-yellow-400': rating >= 3
+        }"
+        viewBox="12 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <div
+        (mouseenter)="onMouseEnter(3.5)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 3.5,
+          'text-yellow-400': rating >= 3.5
+        }"
+        viewBox="0 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+      </div>
+        <div
+        (mouseenter)="onMouseEnter(4)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 4,
+          'text-yellow-400': rating >= 4
+        }"
+        viewBox="12 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+        </div>
+    </div>
+    <div class="flex flex-row">
+      <div
+        (mouseenter)="onMouseEnter(4.5)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 4.5,
+          'text-yellow-400': rating >= 4.5
+        }"
+        viewBox="0 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+        </div>
+      <div
+        (mouseenter)="onMouseEnter(5)"
+          >
+      <svg
+        [ngClass]="{
+          'w-3 h-6 ': true,
+          'text-black': rating < 5,
+          'text-yellow-400': rating >= 5
+        }"
+        viewBox="12 0 12 24"
+        fill="currentColor"
+      >
+        <path
+          d="M12 2l3.09 6.38L22 9.27l-4.45 4.33L18.91 22 12 17.54 5.09 22l1.36-8.4L2
+            9.27l6.91-.89L12 2z"
+        />
+      </svg>
+      </div>
+    </div>
+  </div>
+</div>

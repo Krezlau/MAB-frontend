@@ -1,1 +1,20 @@
-<p>book-review-form works!</p>
+<form class="flex flex-col" (ngSubmit)="onSubmit()">
+  <label class="text-center mt-10 mb-2" id="rating">Your rating</label>
+  <div class="flex flex-row justify-center my-4">
+    <app-book-rating-form></app-book-rating-form>
+  </div>
+  <label class="text-center mb-2" id="content">Your review</label>
+  <textarea
+    class="input rounded-none mb-10 mx-6 h-36"
+    type="text"
+    id="content"
+    [formControl]="contentControl"
+  ></textarea>
+  <div class="mx-auto w-2/3">
+    <button
+      class="btn rounded-none bg-black w-[calc(100%-3rem)] text-center mx-6"
+    >
+      ADD REVIEW
+    </button>
+  </div>
+</form>

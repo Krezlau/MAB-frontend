@@ -7,6 +7,7 @@ import { SearchPageComponent } from './components/pages/search-page/search-page.
 import { NotFoundPageComponent } from './components/pages/not-found-page/not-found-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { BookDetailsPageComponent } from './components/pages/book-details-page/book-details-page.component';
+import { AddBookReviewPageComponent } from './components/pages/add-book-review-page/add-book-review-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'search', component: SearchPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'book-catalog/:id', component: BookDetailsPageComponent },
+  { path: 'book-catalog/:id/add-review', component: AddBookReviewPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 

@@ -20,6 +20,8 @@ import { BookReviewListComponent } from './components/rewievs/book-review-list/b
 import { BookReviewComponent } from './components/rewievs/book-review/book-review.component';
 import { BookReviewFormComponent } from './components/rewievs/book-review-form/book-review-form.component';
 import { BookReviewsCardComponent } from './components/rewievs/book-reviews-card/book-reviews-card.component';
+import { AddBookReviewPageComponent } from './components/pages/add-book-review-page/add-book-review-page.component';
+import { BookRatingFormComponent } from './components/books/book-rating-form/book-rating-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { BookReviewsCardComponent } from './components/rewievs/book-reviews-card
     BookReviewComponent,
     BookReviewFormComponent,
     BookReviewsCardComponent,
+    AddBookReviewPageComponent,
+    BookRatingFormComponent,
   ],
   imports: [
     BrowserModule,
