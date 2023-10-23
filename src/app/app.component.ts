@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertServiceService, IAlert } from './services/alert-service.service';
+import { AlertServiceService } from './services/alert-service.service';
+import { AuthService } from './services/auth.service';
 import { map } from 'rxjs';
 
 @Component({
@@ -9,17 +10,14 @@ import { map } from 'rxjs';
 })
 export class AppComponent {
   title = 'books';
+  alert$ = this.alertService.getAlert();
+  isLoggedIn$ = this.authService.getAuthState().pipe(map(xd => xd.isLoggedIn));
 
-  alertVisible$ = this.alertService.getAlert().pipe(map(alert => alert.isVisible));
-  alertMessage$ = this.alertService.getAlert().pipe(map(alert => alert.message));
-  alertType$ = this.alertService.getAlert().pipe(map(alert => alert.type));
-
-  constructor(private alertService: AlertServiceService) {
+  constructor(private alertService: AlertServiceService, private authService: AuthService) {
   }
 
-
-  onClick() {
-    this.alertService.show('Hello World!', 'success');
+  onLogoutClick() {
+    this.authService.logout();
   }
 
   alertHide() {

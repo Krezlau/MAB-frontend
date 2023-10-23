@@ -21,7 +21,8 @@
     >
   </nav>
   <div class="navbar-end">
-    <a class="btn rounded-none bg-black mx-4" [routerLink]="['login']">login</a>
+    <a *ngIf="!(isLoggedIn$ | async)" class="btn rounded-none bg-black mx-4" [routerLink]="['login']">login</a>
+    <button *ngIf="(isLoggedIn$ | async)" (click)="onLogoutClick()" class="btn rounded-none bg-black mx-4">logout</button>
   </div>
 </header>
 <div class="mx-auto max-w-6xl mt-24 mb-12">
@@ -32,13 +33,13 @@
 <div
   [ngClass]="{
     'alert bg-red-500 text-white shadow-xl shadow-black fixed w-[30rem] rounded-none border-2 border-black left-[calc(50%-15rem)] z-30 transform duration-200 ease-in': true,
-    '-bottom-20': (alertVisible$ | async) === false,
-    'bottom-4': alertVisible$ | async,
-    'bg-green-500': (alertType$ | async) === 'success',
-    'bg-yellow-500': (alertType$ | async) === 'warning',
-    'bg-sky-500': (alertType$ | async) === 'info'
+    '-bottom-20': (alert$ | async )?.isVisible === false,
+    'bottom-4': (alert$ | async)?.isVisible,
+    'bg-green-500': (alert$ | async)?.type === 'success',
+    'bg-yellow-500': (alert$ | async)?.type === 'warning',
+    'bg-sky-500': (alert$ | async)?.type === 'info'
   }"
   (click)="alertHide()"
 >
-  <span>Error! Task failed successfully.</span>
+<span>{{ (alert$ | async)?.message }}</span>
 </div>

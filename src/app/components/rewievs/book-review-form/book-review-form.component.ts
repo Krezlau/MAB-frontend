@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertServiceService } from 'src/app/services/alert-service.service';
 
 @Component({
   selector: 'app-book-review-form',
@@ -8,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class BookReviewFormComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private alertService: AlertServiceService) {
     this.router = router;
+    this.alertService = alertService;
   }
   contentControl = new FormControl('', Validators.required);
   rating = 1;
@@ -21,11 +23,9 @@ export class BookReviewFormComponent {
 
   onSubmit() {
     if (this.contentControl.invalid) {
-      console.log('Form is invalid');
+      this.alertService.show("Please enter a review.", "error");
     } else {
-      console.log('Form is valid');
-      console.log(this.contentControl.value);
-      console.log(this.rating);
+      this.alertService.show("Review created!", "success");
       this.router.navigate(this.router.url.split('/').slice(0, -1));
     }
   }
