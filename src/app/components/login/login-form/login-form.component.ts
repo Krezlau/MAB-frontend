@@ -30,8 +30,6 @@ export class LoginFormComponent {
     } else if (this.passwordControl.invalid || !this.passwordControl.value) {
       this.alertService.show('Please enter a valid password.', 'error');
     } else {
-      this.alertService.show('Login successful.', 'success');
-
       this.authService.login(
         this.usernameControl.value,
         this.passwordControl.value,

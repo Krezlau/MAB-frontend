@@ -30,9 +30,14 @@ export class AuthService {
   retrieveAuthState(): void {
     const expirationDate = localStorage.getItem('expires_at');
     console.log('expirationDate', expirationDate);
-    const mom = moment(expirationDate).add(5*60, 'second');
+    const mom = moment(expirationDate).add(5 * 60, 'second');
     console.log('mom', mom);
-    if (expirationDate && moment().add(5*60, 'second').isBefore(moment(expirationDate))) {
+    if (
+      expirationDate &&
+      moment()
+        .add(5 * 60, 'second')
+        .isBefore(moment(expirationDate))
+    ) {
       const state = localStorage.getItem('authState');
       if (state === null) {
         return;
@@ -78,14 +83,48 @@ export class AuthService {
     };
     this._authStateSubject.next(this._authState);
     localStorage.removeItem('authState');
+    this.alertService.show('You have been logged out.', 'info');
+    this.router.navigate(['/login']);
+  }
+
+  register(username: string, password: string, email: string) {
+    this.xd = this.sendRegisterRequest(username, password, email).subscribe();
+  }
+
+  sendRegisterRequest(username: string, password: string, email: string) {
+    this._loadingSubject.next(true);
+    return this.http
+      .post<IAuthResponse>('http://localhost:8080/api/auth/register', {
+        username,
+        password,
+        email,
+      })
+      .pipe(
+        finalize(() => {
+          this._loadingSubject.next(false);
+          this.xd.unsubscribe();
+        }),
+        tap(
+          (res) => this.handleAuthResponse(res, true),
+          (error) => this.handleAuthError(error),
+        ),
+      );
   }
 
   private handleAuthError(err: any) {
-    console.log(err);
-    this.alertService.show('Invalid username or password', 'error');
+    if (err.error.errorMesssage) {
+      this.alertService.show(err.error.errorMessage, 'error');
+    }
+    console.log(err)
+    if (err.error.errors && err.error.errors.length > 0) {
+      this.alertService.show(err.error.errors[0].defaultMessage, 'error');
+    }
+    else {
+      this.alertService.show('An unknown error has occured. Please try again.', 'error');
+    }
   }
 
-  private handleAuthResponse(res: IAuthResponse) {
+  private handleAuthResponse(res: IAuthResponse, isRegister = false) {
     console.log('Response: ', res);
     this._authState = {
       username: res.username,
@@ -99,7 +138,11 @@ export class AuthService {
     const expiresAt = moment().add(1, 'hour');
     localStorage.setItem('expires_at', expiresAt.toISOString());
     this.router.navigate(['/book-catalog']);
-    this.alertService.show('Logged in successfully!', 'success');
+    if (isRegister) {
+      this.alertService.show('Registered successfully!', 'success');
+    } else {
+      this.alertService.show('Logged in successfully!', 'success');
+    }
   }
 }
 

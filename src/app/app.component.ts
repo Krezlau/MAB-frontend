@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'books';
   alert$ = this.alertService.getAlert();
   isLoggedIn$ = this.authService.getAuthState().pipe(map(xd => xd.isLoggedIn));
+  username$ = this.authService.getAuthState().pipe(map(xd => xd.username));
 
   constructor(private alertService: AlertServiceService, private authService: AuthService) {
   }

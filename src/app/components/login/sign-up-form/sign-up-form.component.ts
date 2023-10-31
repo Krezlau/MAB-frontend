@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -9,10 +10,10 @@ import { AlertServiceService } from 'src/app/services/alert-service.service';
 })
 export class SignUpFormComponent {
 
-  constructor(private router: Router, private alertService: AlertServiceService) {
-    this.router = router;
-    this.alertService = alertService;
+  constructor(private authService: AuthService, private alertService: AlertServiceService) {
   }
+
+  isLoading$ = this.authService.isLoading$;
 
   usernameControl = new FormControl('', [
     Validators.required,
@@ -42,12 +43,11 @@ export class SignUpFormComponent {
   }
 
   onSubmit() {
-    if (this.usernameControl.invalid || this.emailControl.invalid || this.repeatEmailControl.invalid || this.passwordControl.invalid || this.repeatPasswordControl.invalid) {
+    if (this.usernameControl.invalid || !this.usernameControl.value || this.emailControl.invalid || !this.emailControl.value || this.repeatEmailControl.invalid || this.passwordControl.invalid || !this.passwordControl.value || this.repeatPasswordControl.invalid) {
       this.alertService.show("Form invalid.", "error");
     }
     else {
-      this.alertService.show("Account created! You can now log in.", "success");
-      this.router.navigate(['/login']);
+      this.authService.register(this.usernameControl.value, this.passwordControl.value, this.emailControl.value)
     }
   }
 }
