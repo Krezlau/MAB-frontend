@@ -1,10 +1,10 @@
 <form class="flex flex-col" (ngSubmit)="onSubmit()" >
-  <label class="text-center mt-10 mb-2" id="email">Email</label>
+  <label class="text-center mt-10 mb-2" id="username">Username</label>
   <input
     class="input rounded-none mb-4 mx-auto w-2/3"
-    type="email"
-    id="email"
-    [formControl]="emailControl"
+    type="text"
+    id="username"
+    [formControl]="usernameControl"
   />
   <label class="text-center mb-2" id="password">Password</label>
   <input
@@ -14,10 +14,14 @@
     [formControl]="passwordControl"
   />
   <div class="mx-auto w-2/3">
-    <button
+    <button *ngIf="!(isLoading$ | async)"
       class="btn rounded-none bg-black w-[calc(100%-3rem)] text-center mx-6"
     >
       Login
+    </button>
+    <button *ngIf="isLoading$ | async"
+      class="btn rounded-none bg-black w-[calc(100%-3rem)] text-center mx-6 btn-disabled">
+      <i class="fas fa-spinner fa-spin"></i>
     </button>
     <p class="text-center mt-4">
       Don't have an account?

@@ -32,12 +32,13 @@
 </div>
 <div
   [ngClass]="{
-    'alert bg-red-500 text-white shadow-xl shadow-black fixed w-[30rem] rounded-none border-2 border-black left-[calc(50%-15rem)] z-30 transform duration-200 ease-in': true,
+    'alert text-white shadow-xl shadow-black fixed w-[30rem] rounded-none border-2 border-black left-[calc(50%-15rem)] z-30 transform duration-200 ease-in': true,
     '-bottom-20': (alert$ | async )?.isVisible === false,
     'bottom-4': (alert$ | async)?.isVisible,
     'bg-green-500': (alert$ | async)?.type === 'success',
     'bg-yellow-500': (alert$ | async)?.type === 'warning',
-    'bg-sky-500': (alert$ | async)?.type === 'info'
+    'bg-sky-500': (alert$ | async)?.type === 'info',
+    'bg-red-500': (alert$ | async)?.type === 'error'
   }"
   (click)="alertHide()"
 >
