@@ -38,14 +38,14 @@
     <button
       type="submit"
       class="btn rounded-none bg-black w-[calc(100%-3rem)] text-center mx-6"
-      [ngClass]="{'btn-disabled': (isLoading$ | async)}"
+      [ngClass]="{'btn-disabled': (isLoading())}"
     >
       Create Account
     </button>
     <p class="text-center mt-4">
       Already have an account?
       <a class="text-sky-300 hover:text-sky-500" [routerLink]="'/login'"
-        >Sing in</a
+        >Sign in</a
       >
     </p>
   </div>

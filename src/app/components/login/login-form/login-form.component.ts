@@ -13,7 +13,7 @@ export class LoginFormComponent {
     private authService: AuthService,
   ) {}
 
-  isLoading$ = this.authService.isLoading$;
+  isLoading = this.authService.isLoading;
 
   usernameControl = new FormControl('', [
     Validators.required,

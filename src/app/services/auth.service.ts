@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy, OnInit, signal } from '@angular/core';
 import { BehaviorSubject, Subscription, finalize, tap } from 'rxjs';
 import IAuthResponse from '../models/IAuthResponse';
 import { Router } from '@angular/router';
@@ -18,8 +18,8 @@ export class AuthService {
   private xd: Subscription = new Subscription();
 
   private _authStateSubject = new BehaviorSubject<IAuthState>(this._authState);
-  private _loadingSubject = new BehaviorSubject<boolean>(false);
-  isLoading$ = this._loadingSubject.asObservable();
+
+  isLoading = signal(false);
 
   constructor(
     private http: HttpClient,
@@ -29,9 +29,6 @@ export class AuthService {
 
   retrieveAuthState(): void {
     const expirationDate = localStorage.getItem('expires_at');
-    console.log('expirationDate', expirationDate);
-    const mom = moment(expirationDate).add(5 * 60, 'second');
-    console.log('mom', mom);
     if (
       expirationDate &&
       moment()
@@ -57,7 +54,7 @@ export class AuthService {
   }
 
   sendLoginRequest(username: string, password: string) {
-    this._loadingSubject.next(true);
+    this.isLoading.set(true);
     return this.http
       .post<IAuthResponse>('http://localhost:8080/api/auth/login', {
         username,
@@ -65,7 +62,7 @@ export class AuthService {
       })
       .pipe(
         finalize(() => {
-          this._loadingSubject.next(false);
+          this.isLoading.set(false);
           this.xd.unsubscribe();
         }),
         tap(
@@ -92,7 +89,7 @@ export class AuthService {
   }
 
   sendRegisterRequest(username: string, password: string, email: string) {
-    this._loadingSubject.next(true);
+    this.isLoading.set(true);
     return this.http
       .post<IAuthResponse>('http://localhost:8080/api/auth/register', {
         username,
@@ -101,7 +98,7 @@ export class AuthService {
       })
       .pipe(
         finalize(() => {
-          this._loadingSubject.next(false);
+          this.isLoading.set(false);
           this.xd.unsubscribe();
         }),
         tap(

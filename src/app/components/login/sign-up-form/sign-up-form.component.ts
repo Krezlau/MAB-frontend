@@ -13,7 +13,7 @@ export class SignUpFormComponent {
   constructor(private authService: AuthService, private alertService: AlertServiceService) {
   }
 
-  isLoading$ = this.authService.isLoading$;
+  isLoading = this.authService.isLoading;
 
   usernameControl = new FormControl('', [
     Validators.required,
