@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertServiceService } from './services/alert-service.service';
 import { AuthService } from './services/auth.service';
 import { map } from 'rxjs';
@@ -8,12 +8,16 @@ import { map } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'books';
   alert$ = this.alertService.getAlert();
   isLoggedIn$ = this.authService.getAuthState().pipe(map(xd => xd.isLoggedIn));
 
   constructor(private alertService: AlertServiceService, private authService: AuthService) {
+  }
+
+  ngOnInit() {
+    this.authService.retrieveAuthState();
   }
 
   onLogoutClick() {

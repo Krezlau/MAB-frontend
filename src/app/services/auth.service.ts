@@ -1,9 +1,10 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription, finalize, tap } from 'rxjs';
 import IAuthResponse from '../models/IAuthResponse';
 import { Router } from '@angular/router';
 import { AlertServiceService } from './alert-service.service';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,22 @@ export class AuthService {
     private router: Router,
     private alertService: AlertServiceService,
   ) {}
+
+  retrieveAuthState(): void {
+    const expirationDate = localStorage.getItem('expires_at');
+    console.log('expirationDate', expirationDate);
+    const mom = moment(expirationDate).add(5*60, 'second');
+    console.log('mom', mom);
+    if (expirationDate && moment().add(5*60, 'second').isBefore(moment(expirationDate))) {
+      const state = localStorage.getItem('authState');
+      if (state === null) {
+        return;
+      }
+      this._authState = JSON.parse(state);
+      this._authStateSubject.next(this._authState);
+      console.log('authState', this._authState);
+    }
+  }
 
   getAuthState() {
     return this._authStateSubject.asObservable();
@@ -77,6 +94,10 @@ export class AuthService {
     };
     this._authStateSubject.next(this._authState);
     localStorage.setItem('authState', JSON.stringify(this._authState));
+    // set expiration date
+    // moment doesnt work
+    const expiresAt = moment().add(1, 'hour');
+    localStorage.setItem('expires_at', expiresAt.toISOString());
     this.router.navigate(['/book-catalog']);
     this.alertService.show('Logged in successfully!', 'success');
   }
