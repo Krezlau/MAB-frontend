@@ -21,9 +21,9 @@
     >
   </nav>
   <div class="navbar-end">
-    <h2 *ngIf="(isLoggedIn$ | async)" class="text-white mx-4">Logged in as <h1 class="font-bold inline">{{ (username$ | async) }}</h1></h2>
-    <a *ngIf="!(isLoggedIn$ | async)" class="btn rounded-none bg-black mx-4" [routerLink]="['login']">login</a>
-    <button *ngIf="(isLoggedIn$ | async)" (click)="onLogoutClick()" class="btn rounded-none bg-black mx-4">logout</button>
+    <h2 *ngIf="authState().isLoggedIn" class="text-white mx-4">Logged in as <h1 class="font-bold inline">{{ (authState().username) }}</h1></h2>
+    <a *ngIf="!(authState().isLoggedIn)" class="btn rounded-none bg-black mx-4" [routerLink]="['login']">login</a>
+    <button *ngIf="authState().isLoggedIn" (click)="onLogoutClick()" class="btn rounded-none bg-black mx-4">logout</button>
   </div>
 </header>
 <div class="mx-auto max-w-6xl mt-24 mb-12">

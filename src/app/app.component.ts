@@ -11,8 +11,7 @@ import { map } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'books';
   alert$ = this.alertService.getAlert();
-  isLoggedIn$ = this.authService.getAuthState().pipe(map(xd => xd.isLoggedIn));
-  username$ = this.authService.getAuthState().pipe(map(xd => xd.username));
+  authState = this.authService.getAuthState();
 
   constructor(private alertService: AlertServiceService, private authService: AuthService) {
   }

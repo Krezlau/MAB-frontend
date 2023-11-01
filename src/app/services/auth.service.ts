@@ -17,7 +17,7 @@ export class AuthService {
   };
   private xd: Subscription = new Subscription();
 
-  private _authStateSubject = new BehaviorSubject<IAuthState>(this._authState);
+  private _authStateSignal = signal(this._authState);
 
   isLoading = signal(false);
 
@@ -40,13 +40,13 @@ export class AuthService {
         return;
       }
       this._authState = JSON.parse(state);
-      this._authStateSubject.next(this._authState);
+      this._authStateSignal.set(this._authState);
       console.log('authState', this._authState);
     }
   }
 
   getAuthState() {
-    return this._authStateSubject.asObservable();
+    return this._authStateSignal;
   }
 
   login(username: string, password: string) {
@@ -78,7 +78,7 @@ export class AuthService {
       authToken: '',
       isLoggedIn: false,
     };
-    this._authStateSubject.next(this._authState);
+    this._authStateSignal.set(this._authState);
     localStorage.removeItem('authState');
     this.alertService.show('You have been logged out.', 'info');
     this.router.navigate(['/login']);
@@ -109,11 +109,11 @@ export class AuthService {
   }
 
   private handleAuthError(err: any) {
-    if (err.error.errorMesssage) {
+    console.log(err);
+    if (err.error.errorMessage) {
       this.alertService.show(err.error.errorMessage, 'error');
     }
-    console.log(err)
-    if (err.error.errors && err.error.errors.length > 0) {
+    else if (err.error.errors && err.error.errors.length > 0) {
       this.alertService.show(err.error.errors[0].defaultMessage, 'error');
     }
     else {
@@ -128,7 +128,7 @@ export class AuthService {
       authToken: res.token,
       isLoggedIn: true,
     };
-    this._authStateSubject.next(this._authState);
+    this._authStateSignal.set(this._authState);
     localStorage.setItem('authState', JSON.stringify(this._authState));
     // set expiration date
     // moment doesnt work
