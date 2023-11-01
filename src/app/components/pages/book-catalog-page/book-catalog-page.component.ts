@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
   selector: 'app-book-catalog-page',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class BookCatalogPageComponent {
 
+  constructor(private booksService: BooksService) {
+
+  }
+
+  books$ = this.booksService.getBooks();
 }

@@ -2,11 +2,29 @@
   class="flex flex-col justify-between p-4 w-full h-full bg-sky-900 border-2 border-black shadow-gray-500 shadow-sm"
 >
   <div>
-    <h1 class="text-xl font-bold">{{ book.title.toUpperCase() }}</h1>
-    <h2>{{ book.author }}</h2>
-    <app-book-rating [rating]="book.rating"></app-book-rating>
+    <h1
+      *ngIf="book"
+      [ngClass]="{
+        'text-xl font-bold': !featured,
+        'text-6xl font-extrabold': featured
+      }"
+    >
+      {{ book.title.toUpperCase() }}
+    </h1>
+    <h2 *ngIf="book" [ngClass]="{ 'text-xl': featured }">{{ book.author }}</h2>
+    <app-book-rating *ngIf="book" [rating]="book.rating"></app-book-rating>
   </div>
-  <div class="flex flex-row justify-end mx-4">
-    <a [routerLink]="['/book-catalog', book.id]" class="btn rounded-none bg-black">Details</a>
+  <p *ngIf="featured && book">{{ book.synopsis }}</p>
+  <div
+    [ngClass]="{
+      'flex flex-row justify-end mx-4': true,
+    }"
+  >
+    <a
+      *ngIf="book"
+      [routerLink]="['/book-catalog', book.id]"
+      class="btn rounded-none bg-black"
+      >Details</a
+    >
   </div>
 </div>

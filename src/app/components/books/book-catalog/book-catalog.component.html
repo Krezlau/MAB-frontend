@@ -1,8 +1,14 @@
-<ul class="grid grid-cols-3 gap-4">
+<ul *ngIf="books && books.length > 0"
+  class="grid grid-cols-3 gap-4">
   <li class="col-span-2 row-span-3">
-    <app-featured-book-card [book]="featured"></app-featured-book-card>
+    <app-book-card
+        [book]="books.at(0)"
+      [featured]="true"
+    ></app-book-card>
   </li>
-  <li *ngFor="let book of books">
+  <li *ngFor="let book of books.slice(1)">
     <app-book-card [book]="book"></app-book-card>
   </li>
 </ul>
+
+<h1 *ngIf="!books || books.length < 0">No books found. Try again.</h1>

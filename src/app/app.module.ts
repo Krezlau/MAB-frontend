@@ -14,7 +14,6 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { BookCatalogComponent } from './components/books/book-catalog/book-catalog.component';
 import { BookCardComponent } from './components/books/book-card/book-card.component';
-import { FeaturedBookCardComponent } from './components/books/featured-book-card/featured-book-card.component';
 import { BookDetailsPageComponent } from './components/pages/book-details-page/book-details-page.component';
 import { BookRatingComponent } from './components/books/book-rating/book-rating.component';
 import { BookReviewListComponent } from './components/rewievs/book-review-list/book-review-list.component';
@@ -42,7 +41,6 @@ import { BookSearchResultsComponent } from './components/books/book-search-resul
     LoginFormComponent,
     BookCatalogComponent,
     BookCardComponent,
-    FeaturedBookCardComponent,
     BookDetailsPageComponent,
     BookRatingComponent,
     BookReviewListComponent,
