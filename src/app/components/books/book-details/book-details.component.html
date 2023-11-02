@@ -1,0 +1,26 @@
+<div *ngIf="book" class="bg-sky-900 mt-8 border-black border-2 p-8 shadow-sm mx-auto w-5/6">
+  <div class="flex flex-row justify-between">
+    <div class="">
+      <h1 class="text-5xl font-bold text-white">
+        {{ book.title.toUpperCase() }}
+      </h1>
+      <h2 class="text-xl">{{ book.author }}</h2>
+    </div>
+    <div class="my-auto">
+      <app-book-rating [rating]="book.rating"></app-book-rating>
+    </div>
+  </div>
+  <div class="mt-10 prose max-w-none">
+    <h3>Sinopsis</h3>
+    <p>{{ book.synopsis }}</p>
+    <h3>About the author</h3>
+    <p>{{ book.aboutAuthor }}</p>
+    <h3>Fun facts</h3>
+    <p>{{ book.funFacts }}</p>
+  </div>
+</div>
+<h1 class="text-center text-3xl font-bold mt-8 mb-2">REVIEWS</h1>
+
+<!--
+  <app-book-reviews-card [bookReviews]="book.reviews"></app-book-reviews-card>
+  -->

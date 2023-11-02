@@ -28,6 +28,7 @@ import { AuthorListComponent } from './components/authors/author-list/author-lis
 import { AuthorCardComponent } from './components/authors/author-card/author-card.component';
 import { BookSearchFormComponent } from './components/books/book-search-form/book-search-form.component';
 import { BookSearchResultsComponent } from './components/books/book-search-results/book-search-results.component';
+import { BookDetailsComponent } from './components/books/book-details/book-details.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { BookSearchResultsComponent } from './components/books/book-search-resul
     AuthorCardComponent,
     BookSearchFormComponent,
     BookSearchResultsComponent,
+    BookDetailsComponent,
   ],
   imports: [
     BrowserModule,
