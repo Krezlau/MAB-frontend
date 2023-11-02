@@ -5,6 +5,7 @@ interface IBookCard {
   title: string;
   synopsis: string;
   rating: number;
+  reviewCount: number;
   cover?: string;
   tags: string[];
 }

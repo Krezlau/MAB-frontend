@@ -21,7 +21,7 @@
           [routerLink]="['/book-catalog', book.id]"
           class="text-lg font-semibold flex flex-row gap-2"
           ><p class="border-r-2 border-black pr-2">{{ book.title.toUpperCase() }}</p>
-          <app-book-rating [rating]="3.5"></app-book-rating>
+          <app-book-rating [rating]="book.rating" [reviewCount]="book.reviewCount" [showReviewCount]="true"></app-book-rating>
         </a>
       </li>
     </ul>

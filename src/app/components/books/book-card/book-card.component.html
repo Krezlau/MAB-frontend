@@ -12,7 +12,7 @@
       {{ book.title.toUpperCase() }}
     </h1>
     <h2 *ngIf="book" [ngClass]="{ 'text-xl': featured }">{{ book.author }}</h2>
-    <app-book-rating *ngIf="book" [rating]="book.rating"></app-book-rating>
+    <app-book-rating *ngIf="book" [rating]="book.rating" [reviewCount]="book.reviewCount" [showReviewCount]="true"></app-book-rating>
   </div>
   <p *ngIf="featured && book">{{ book.synopsis }}</p>
   <div

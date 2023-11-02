@@ -6,4 +6,6 @@ import { Component, Input } from '@angular/core';
 })
 export class BookRatingComponent {
   @Input() rating: number = 0;
+  @Input() reviewCount?: number;
+  @Input() showReviewCount?: boolean = false;
 }
