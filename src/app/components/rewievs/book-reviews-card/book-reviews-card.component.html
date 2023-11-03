@@ -10,5 +10,5 @@
   <p *ngIf="bookReviews.length === 0" class="text-center text-gray-400">
     No reviews yet. Be the first to add one! 😊
   </p>
-  <app-book-review-list [bookReviews]="bookReviews"></app-book-review-list>
+  <app-book-review-list [bookReviews]="bookReviews" (onRatingChange)="ratingChanged($event)"></app-book-review-list>
 </div>

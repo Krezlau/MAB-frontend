@@ -4,7 +4,7 @@ import IBookReview from 'src/app/models/IBookReview';
 
 @Component({
   selector: 'app-book-details',
-  templateUrl: './book-details.component.html'
+  templateUrl: './book-details.component.html',
 })
 export class BookDetailsComponent {
   @Input() book: IBookDetails | null | undefined;
@@ -26,5 +26,10 @@ export class BookDetailsComponent {
     }
 
     return this.reviews.length;
+  }
+
+  onRatingChanged(id: string) {
+    if (this.reviews)
+      this.reviews = this.reviews.filter((review) => review.id !== id);
   }
 }

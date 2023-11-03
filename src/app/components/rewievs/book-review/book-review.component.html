@@ -1,12 +1,33 @@
 <li class="mt-6">
   <div class="flex flex-row justify-between">
-    <div class="flex flex-row gap-2">
-    <div class="rounded-full flex flex-row p-1 justify-center h-8 w-8 bg-black">
-      <span className="text-xs text-center w-full">{{ review.username[0].toUpperCase() }}</span>
+    <div>
+      <div class="flex flex-row gap-2">
+        <div
+          class="rounded-full flex flex-row p-1 justify-center h-8 w-8 bg-black"
+        >
+          <span className="text-xs text-center w-full">{{
+            review.username[0].toUpperCase()
+          }}</span>
+        </div>
+        <h3 class="my-auto">{{ review.username }}</h3>
+      </div>
     </div>
-    <h3 class="my-auto">{{ review.username }}</h3>
+    <div class="flex flex-row gap-8">
+      <button *ngIf="showDeleteButton()" (click)="deleteReview()" class="my-auto text-white p-0 h-auto transform ease-in-out duration-200 hover:scale-110">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 -960 960 960"
+          width="24"
+          fill="currentColor"
+        >
+          <path
+            d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+          />
+        </svg>
+      </button>
+      <app-book-rating [rating]="review.rating"></app-book-rating>
     </div>
-    <app-book-rating [rating]="review.rating"></app-book-rating>
   </div>
   <div class="mt-2 border-b-2 pb-2 border-gray-800">
     <p class="text-sm">{{ review.content }}</p>

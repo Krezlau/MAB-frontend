@@ -2,5 +2,6 @@
   <app-book-review
     *ngFor="let review of bookReviews"
     [review]="review"
+    (onDeleteReview)="onDeleteReview($event)"
   ></app-book-review>
 </ul>

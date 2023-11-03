@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import IBookReview from 'src/app/models/IBookReview';
 
 @Component({
@@ -7,4 +7,9 @@ import IBookReview from 'src/app/models/IBookReview';
 })
 export class BookReviewsCardComponent {
   @Input() bookReviews: IBookReview[] = [];
+  @Output() OnRatingChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  ratingChanged(id: string) {
+    this.OnRatingChanged.emit(id);
+  }
 }

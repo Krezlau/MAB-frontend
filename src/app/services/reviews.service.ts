@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, OnDestroy, signal } from '@angular/core';
 import { AuthService } from './auth.service';
-import { finalize, tap } from 'rxjs';
+import { Subscription, finalize, tap } from 'rxjs';
 import IBookReview from '../models/IBookReview';
 import IReviewCreate from '../models/IReviewCreate';
 import { AlertServiceService } from './alert-service.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class ReviewsService {
+export class ReviewsService implements OnDestroy {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -19,6 +19,7 @@ export class ReviewsService {
   ) {}
 
   isLoading = signal(false);
+  xd: Subscription = new Subscription();
 
   getReviewsForBook(bookId: string) {
     this.isLoading.set(true);
@@ -79,5 +80,44 @@ export class ReviewsService {
           },
         ),
       );
+  }
+
+  deleteReview(reviewId: string) {
+    this.xd = this.sendDeleteReviewRequest(reviewId).subscribe();
+  }
+
+  sendDeleteReviewRequest(reviewId: string) {
+    this.isLoading.set(true);
+    return this.http
+      .delete(`http://localhost:8080/api/reviews/${reviewId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${
+            this.authService.getAuthState()().authToken
+          }`,
+        },
+      })
+      .pipe(
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+        tap(
+          (result) => {
+            console.log(result);
+            this.alertService.show('Review deleted successfully', 'success');
+          },
+          (err) => {
+            console.log(err);
+            this.alertService.show(
+              'Error deleting review. Please try again.',
+              'error',
+            );
+          },
+        ),
+      );
+  }
+
+  ngOnDestroy() {
+    this.xd.unsubscribe();
   }
 }

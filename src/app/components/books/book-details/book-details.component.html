@@ -31,4 +31,5 @@
 <app-book-reviews-card
   *ngIf="reviews"
   [bookReviews]="reviews"
+  (OnRatingChanged)="onRatingChanged($event)"
 ></app-book-reviews-card>
