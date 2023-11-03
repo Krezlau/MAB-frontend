@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import IBookReview from 'src/app/models/IBookReview';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-book-reviews-card',

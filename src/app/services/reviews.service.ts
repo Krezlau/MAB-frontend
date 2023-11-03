@@ -28,9 +28,6 @@ export class ReviewsService {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${
-              this.authService.getAuthState()().authToken
-            }`,
           },
         },
       )
