@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
+import { ReviewsService } from 'src/app/services/reviews.service';
 
 @Component({
   selector: 'app-book-review-form',
-  templateUrl: './book-review-form.component.html'
+  templateUrl: './book-review-form.component.html',
 })
-export class BookReviewFormComponent {
-
-  constructor(private router: Router, private alertService: AlertServiceService) {
-    this.router = router;
-    this.alertService = alertService;
+export class BookReviewFormComponent implements OnDestroy {
+  constructor(
+    private alertService: AlertServiceService,
+    private route: ActivatedRoute,
+    private reviewService: ReviewsService,
+  ) {
+    this.bookId = this.route.snapshot.paramMap.get('id');
   }
+
   contentControl = new FormControl('', Validators.required);
   rating = 1;
+  bookId: string | null;
+  sub: Subscription = new Subscription();
 
   onRatingChange(rating: number) {
     this.rating = rating;
@@ -22,11 +29,17 @@ export class BookReviewFormComponent {
   }
 
   onSubmit() {
-    if (this.contentControl.invalid) {
-      this.alertService.show("Please enter a review.", "error");
+    if (this.contentControl.invalid || !this.contentControl.value || !this.bookId) {
+      this.alertService.show('Please enter a review.', 'error');
     } else {
-      this.alertService.show("Review created!", "success");
-      this.router.navigate(this.router.url.split('/').slice(0, -1));
+      this.sub = this.reviewService.createReview(
+        { content: this.contentControl.value, rating: this.rating },
+        this.bookId,
+      ).subscribe();
     }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }
