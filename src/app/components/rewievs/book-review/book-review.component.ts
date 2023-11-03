@@ -8,7 +8,7 @@ import { ReviewsService } from 'src/app/services/reviews.service';
   selector: 'app-book-review',
   templateUrl: './book-review.component.html',
 })
-export class BookReviewComponent {
+export class BookReviewComponent implements OnDestroy {
   @Input() review: IBookReview = {} as IBookReview;
   @Output() onDeleteReview: EventEmitter<string> = new EventEmitter<string>();
 
@@ -16,6 +16,8 @@ export class BookReviewComponent {
     private authService: AuthService,
     private reviewsService: ReviewsService,
   ) {}
+
+  sub: Subscription = new Subscription();
 
   showDeleteButton(): boolean {
     return (
@@ -25,7 +27,14 @@ export class BookReviewComponent {
   }
 
   deleteReview() {
-    this.onDeleteReview.emit(this.review.id);
-    this.reviewsService.deleteReview(this.review.id);
+    this.sub = this.reviewsService.deleteReview(this.review.id).subscribe((response) => {
+      console.log(response);
+      console.log('Review deleted');
+      this.onDeleteReview.emit(this.review.id);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

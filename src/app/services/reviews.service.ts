@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class ReviewsService implements OnDestroy {
+export class ReviewsService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -19,7 +19,6 @@ export class ReviewsService implements OnDestroy {
   ) {}
 
   isLoading = signal(false);
-  xd: Subscription = new Subscription();
 
   getReviewsForBook(bookId: string) {
     this.isLoading.set(true);
@@ -83,10 +82,6 @@ export class ReviewsService implements OnDestroy {
   }
 
   deleteReview(reviewId: string) {
-    this.xd = this.sendDeleteReviewRequest(reviewId).subscribe();
-  }
-
-  sendDeleteReviewRequest(reviewId: string) {
     this.isLoading.set(true);
     return this.http
       .delete(`http://localhost:8080/api/reviews/${reviewId}`, {
@@ -115,9 +110,5 @@ export class ReviewsService implements OnDestroy {
           },
         ),
       );
-  }
-
-  ngOnDestroy() {
-    this.xd.unsubscribe();
   }
 }
