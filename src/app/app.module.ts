@@ -29,6 +29,7 @@ import { AuthorCardComponent } from './components/authors/author-card/author-car
 import { BookSearchFormComponent } from './components/books/book-search-form/book-search-form.component';
 import { BookSearchResultsComponent } from './components/books/book-search-results/book-search-results.component';
 import { BookDetailsComponent } from './components/books/book-details/book-details.component';
+import { MockBookCatalogComponent } from './components/books/mock-book-catalog/mock-book-catalog.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { BookDetailsComponent } from './components/books/book-details/book-detai
     BookSearchFormComponent,
     BookSearchResultsComponent,
     BookDetailsComponent,
+    MockBookCatalogComponent,
   ],
   imports: [
     BrowserModule,

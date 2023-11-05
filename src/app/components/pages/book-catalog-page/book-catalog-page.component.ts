@@ -13,4 +13,5 @@ export class BookCatalogPageComponent {
   }
 
   books$ = this.booksService.getBooks();
+  isLoading$ = this.booksService.isLoading();
 }

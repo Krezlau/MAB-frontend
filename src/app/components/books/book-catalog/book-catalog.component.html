@@ -1,14 +1,13 @@
-<ul *ngIf="books && books.length > 0"
-  class="grid grid-cols-3 gap-4">
+<ul *ngIf="books && books.length > 0" class="grid grid-cols-3 gap-4">
   <li class="col-span-2 row-span-3">
-    <app-book-card
-        [book]="books.at(0)"
-      [featured]="true"
-    ></app-book-card>
+    <app-book-card [book]="books.at(0)" [featured]="true"></app-book-card>
   </li>
   <li *ngFor="let book of books.slice(1)">
     <app-book-card [book]="book"></app-book-card>
   </li>
 </ul>
 
-<h1 *ngIf="!books || books.length < 0">No books found. Try again.</h1>
+<app-mock-book-catalog *ngIf="!books && isLoading"></app-mock-book-catalog>
+<h1 *ngIf="(!books || books.length < 0) && !isLoading">
+  No books found. Try again.
+</h1>

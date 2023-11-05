@@ -7,4 +7,5 @@ import IAuthor from 'src/app/models/IAuthor';
 })
 export class AuthorListComponent {
   @Input() authors: IAuthor[] | null = [];
+  @Input() isLoading = false;
 }

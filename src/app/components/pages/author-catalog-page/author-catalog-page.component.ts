@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import IAuthor from 'src/app/models/IAuthor';
 import { AuthorsService } from 'src/app/services/authors.service';
@@ -12,4 +12,5 @@ export class AuthorCatalogPageComponent {
   constructor(private authorsService: AuthorsService) {}
 
   authors$: Observable<IAuthor[]> = this.authorsService.getAuthors();
+  isLoading$ = this.authorsService.isLoading;
 }
