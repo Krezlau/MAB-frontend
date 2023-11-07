@@ -1,8 +1,9 @@
-<form class="text-center">
+<form class="text-center" (submit)="searchOnClick()">
   <label class="block my-8 text-center text-2xl font-semibold">Search</label>
   <div class="flex flex-row justify-between gap-2 w-2/3 mx-auto">
   <input
     class="input bg-sky-900 border-gray-500 rounded-none w-full"
+    [formControl]="searchControl"
   />
   <button class="btn my-auto rounded-none bg-black p-1" type="submit">
     <svg

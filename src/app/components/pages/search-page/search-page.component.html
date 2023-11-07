@@ -1,2 +1,5 @@
-<app-book-search-form></app-book-search-form>
-<app-book-search-results [books]="books"></app-book-search-results>
+<app-book-search-form (search)="onSearch($event)"></app-book-search-form>
+<app-book-search-results
+  [loading]="isLoading()"
+  [entities]="this.entities$ | async"
+></app-book-search-results>
