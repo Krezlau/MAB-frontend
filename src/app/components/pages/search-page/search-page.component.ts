@@ -17,6 +17,11 @@ export class SearchPageComponent implements OnDestroy {
     this.sub = this.route.queryParams.subscribe((params) => {
       if (params['q']) {
         this.search(params['q']);
+        this.searchEmpty = false;
+        this.q = params['q'];
+      }
+      else {
+        this.searchEmpty = true;
       }
     });
   }
@@ -26,6 +31,8 @@ export class SearchPageComponent implements OnDestroy {
     ISearchableEntity[]
   >();
   isLoading = this.searchService.isLoading;
+  searchEmpty = true;
+  q = '';
 
   search(searchTerm: string) {
     this.entities$ = this.searchService.search(searchTerm);
@@ -33,6 +40,7 @@ export class SearchPageComponent implements OnDestroy {
 
   onSearch(searchTerm: string) {
     this.router.navigate(['search'], { queryParams: { q: searchTerm } });
+    console.log(this.q);
   }
 
   ngOnDestroy() {

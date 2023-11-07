@@ -8,4 +8,5 @@ import ISearchableEntity from 'src/app/models/ISearchableEntity';
 export class BookSearchResultsComponent {
   @Input() entities: ISearchableEntity[] | null = [];
   @Input() loading = false;
+  @Input() searchEmpty = false;
 }

@@ -5,3 +5,11 @@
 <div *ngIf="loading" class="w-2/3 mx-auto mt-10 flex flex-row justify-center">
   <div class="mx-auto loading loading-spinner loading-lg"></div>
 </div>
+
+<div *ngIf="!loading && entities && entities.length === 0" class="w-2/3 mx-auto mt-10">
+  <p class="text-center">No results found.</p>
+</div>
+
+<div *ngIf="!loading && searchEmpty" class="w-2/3 mx-auto mt-10">
+  <p class="text-center">Please enter a search term.</p>
+</div>
