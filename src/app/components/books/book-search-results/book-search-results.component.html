@@ -1,3 +1,7 @@
 <ul class="w-2/3 mx-auto">
   <app-searchable-entity-card *ngFor="let entity of entities" [entity]="entity"></app-searchable-entity-card>
 </ul>
+
+<div *ngIf="loading" class="w-2/3 mx-auto mt-10 flex flex-row justify-center">
+  <div class="mx-auto loading loading-spinner loading-lg"></div>
+</div>
