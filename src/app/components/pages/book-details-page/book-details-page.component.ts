@@ -18,6 +18,8 @@ export class BookDetailsPageComponent implements OnInit {
   ) {}
   book$: Observable<IBookDetails> | undefined;
   reviews$: Observable<IBookReview[]> | undefined;
+  isLoading = this.booksService.isLoading;
+  reviewsIsLoading = this.reviewsService.isLoading;
 
   ngOnInit(): void {
     const bookId = this.route.snapshot.paramMap.get('id');

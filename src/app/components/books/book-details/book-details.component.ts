@@ -9,6 +9,8 @@ import IBookReview from 'src/app/models/IBookReview';
 export class BookDetailsComponent {
   @Input() book: IBookDetails | null | undefined;
   @Input() reviews: IBookReview[] | null | undefined;
+  @Input() loading: boolean | undefined;
+  @Input() reviewsLoading: boolean | undefined;
 
   getAverageRating(): number {
     if (!this.reviews || this.reviews.length === 0) {

@@ -41,6 +41,7 @@ export class BooksService {
 
   getBookById(id: string) {
     this.isLoading.set(true);
+    console.log(id);
     return this.http.get<IBookDetails>(`http://localhost:8080/api/books/${id}`, {
         headers: {
           'Content-Type': 'application/json',

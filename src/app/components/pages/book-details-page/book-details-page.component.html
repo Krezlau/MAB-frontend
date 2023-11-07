@@ -1,1 +1,6 @@
-<app-book-details [book]="book$ | async" [reviews]="reviews$ | async"></app-book-details>
+<app-book-details
+  [loading]="isLoading()"
+  [reviewsLoading]="reviewsIsLoading()"
+  [book]="book$ | async"
+  [reviews]="reviews$ | async"
+></app-book-details>

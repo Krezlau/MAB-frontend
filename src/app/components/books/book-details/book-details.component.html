@@ -1,5 +1,5 @@
 <div
-  *ngIf="book"
+  *ngIf="book && !loading"
   class="bg-sky-900 mt-8 border-black border-2 p-8 shadow-sm mx-auto w-5/6"
 >
   <div class="flex flex-row justify-between">
@@ -26,10 +26,23 @@
     <p>{{ book.funFacts }}</p>
   </div>
 </div>
-<h1 class="text-center text-3xl font-bold mt-8 mb-2">REVIEWS</h1>
+
+<div
+  *ngIf="loading"
+  class="bg-sky-900 mt-8 p-8 shadow-sm mx-auto w-5/6 h-[40rem] animate-pulse"
+>
+  <div class="bg-gray-600 animate-pulse h-24 w-5/6"></div>
+  <div class="bg-gray-600 animate-pulse h-32 mt-8"></div>
+  <div class="bg-gray-600 animate-pulse h-32 mt-6"></div>
+  <div class="bg-gray-600 animate-pulse h-32 mt-6"></div>
+</div>
+
+<h1 *ngIf="!reviewsLoading" class="text-center text-3xl font-bold mt-8 mb-2">
+  REVIEWS
+</h1>
 
 <app-book-reviews-card
-  *ngIf="reviews"
+  *ngIf="reviews && !reviewsLoading"
   [bookReviews]="reviews"
   (OnRatingChanged)="onRatingChanged($event)"
 ></app-book-reviews-card>
