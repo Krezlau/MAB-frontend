@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import IBookReview from 'src/app/models/IBookReview';
+import IComment from 'src/app/models/IComment';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReviewsService } from 'src/app/services/reviews.service';
 
@@ -11,6 +12,8 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 export class BookReviewComponent implements OnDestroy {
   @Input() review: IBookReview = {} as IBookReview;
   @Output() onDeleteReview: EventEmitter<string> = new EventEmitter<string>();
+  commentsOpen: boolean = false;
+  comments: IComment[] = [];
 
   constructor(
     private authService: AuthService,
@@ -32,6 +35,11 @@ export class BookReviewComponent implements OnDestroy {
       console.log('Review deleted');
       this.onDeleteReview.emit(this.review.id);
     });
+  }
+
+  showComments() {
+    this.commentsOpen = !this.commentsOpen;
+    console.log("xd");
   }
 
   ngOnDestroy(): void {

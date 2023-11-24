@@ -31,6 +31,7 @@ import { BookSearchResultsComponent } from './components/books/book-search-resul
 import { BookDetailsComponent } from './components/books/book-details/book-details.component';
 import { MockBookCatalogComponent } from './components/books/mock-book-catalog/mock-book-catalog.component';
 import { SearchableEntityCardComponent } from './components/search/searchable-entity-card/searchable-entity-card.component';
+import { CommentListComponent } from './components/comments/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SearchableEntityCardComponent } from './components/search/searchable-en
     BookDetailsComponent,
     MockBookCatalogComponent,
     SearchableEntityCardComponent,
+    CommentListComponent,
   ],
   imports: [
     BrowserModule,
