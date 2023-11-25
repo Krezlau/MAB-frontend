@@ -1,2 +1,2 @@
 <app-comment-form [isLoading]="isLoading()" (submitComment)="onSubmit($event)"></app-comment-form>
-<app-comment-list [comments]="comments$ | async" [isLoading]="isLoading()"></app-comment-list>
+<app-comment-list [comments]="comments$ | async" [isLoading]="isLoading()" (onCommentDelete)="onCommentDeleted()"></app-comment-list>

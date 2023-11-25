@@ -11,6 +11,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 export class CommentsViewComponent implements OnDestroy {
   @Input() reviewId: string = "";
   @Output() commentAdded: EventEmitter<void> = new EventEmitter<void>();
+  @Output() commentDeleted: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private commentService: CommentsService){}
   comments$: Observable<IComment[]> = new Observable;
@@ -20,6 +21,10 @@ export class CommentsViewComponent implements OnDestroy {
   ngOnInit() {
     this.comments$ = this.commentService.getCommentsForReview(this.reviewId);
     this.isLoading = this.commentService.isLoading;
+  }
+
+  onCommentDeleted() {
+    this.commentDeleted.emit();
   }
 
   onSubmit(comment: string) {

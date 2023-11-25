@@ -30,21 +30,23 @@ export class BookReviewComponent implements OnDestroy {
   }
 
   deleteReview() {
+    console.log('delete review');
     this.sub = this.reviewsService.deleteReview(this.review.id).subscribe((response) => {
       console.log(response);
-      console.log('Review deleted');
       this.onDeleteReview.emit(this.review.id);
     });
   }
 
   showComments() {
     this.commentsOpen = !this.commentsOpen;
-    console.log("xd");
   }
 
   onCommentAdded() {
-    console.log("lmao")
     this.review.commentsCount++;
+  }
+
+  onCommentDeleted() {
+    this.review.commentsCount--;
   }
 
   ngOnDestroy(): void {

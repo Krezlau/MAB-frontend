@@ -79,7 +79,7 @@ export class ReviewsService {
   }
 
   deleteReview(reviewId: string) {
-    this.isLoading.set(true);
+    //this.isLoading.set(true);
     return this.http
       .delete(`http://localhost:8080/api/reviews/${reviewId}`, {
         headers: {
@@ -91,7 +91,7 @@ export class ReviewsService {
       })
       .pipe(
         finalize(() => {
-          this.isLoading.set(false);
+          //this.isLoading.set(false);
         }),
         tap(
           (result) => {

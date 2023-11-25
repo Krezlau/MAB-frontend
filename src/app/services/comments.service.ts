@@ -18,6 +18,7 @@ export class CommentsService {
 
   isLoading = signal(false);
   addCommentLoading = signal(false);
+  deleteCommentLoading = signal(false);
 
   getCommentsForReview(reviewId: string): Observable<IComment[]> {
     this.isLoading.set(true);
@@ -71,6 +72,35 @@ export class CommentsService {
           (err) => {
             this.alertService.show(
               'Something went wrong while adding comment',
+              'error',
+            );
+          },
+        ),
+      );
+  }
+
+  deleteComment(commentId: string) {
+    this.deleteCommentLoading.set(true);
+    return this.http
+      .delete(`http://localhost:8080/api/comments/${commentId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${
+            this.authService.getAuthState()().authToken
+          }`,
+        },
+      })
+      .pipe(
+        finalize(() => {
+          this.deleteCommentLoading.set(false);
+        }),
+        tap(
+          (result) => {
+            console.log(result);
+          },
+          (err) => {
+            this.alertService.show(
+              'Something went wrong while deleting comment',
               'error',
             );
           },
