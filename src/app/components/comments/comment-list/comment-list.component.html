@@ -1,2 +1,6 @@
-<ul *ngFor="let comment of (comments$ | async)">
+<ul *ngFor="let comment of comments">
+  <li>{{comment.username}}: {{comment.content}}</li>
 </ul>
+
+<p *ngIf="!isLoading && (!comments || comments.length === 0)">No comments yet!</p>
+<p *ngIf="isLoading">Loading comments...</p>

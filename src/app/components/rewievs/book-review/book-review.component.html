@@ -34,7 +34,8 @@
   </div>
   <div class="flex flex-row justify-end gap-2">
     <p>{{ review.commentsCount }} comments</p>
-    <button (click)="showComments()">show</button>
+    <button *ngIf="!this.commentsOpen" (click)="showComments()">show</button>
+    <button *ngIf="this.commentsOpen" (click)="showComments()">hide</button>
   </div>
-  <app-comment-list *ngIf="this.commentsOpen" [reviewId]="review.id"></app-comment-list>
+  <app-comments-view *ngIf="this.commentsOpen" [reviewId]="review.id" (commentAdded)="onCommentAdded()"></app-comments-view>
 </li>

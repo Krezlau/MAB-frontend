@@ -42,6 +42,11 @@ export class BookReviewComponent implements OnDestroy {
     console.log("xd");
   }
 
+  onCommentAdded() {
+    console.log("lmao")
+    this.review.commentsCount++;
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
